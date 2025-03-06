@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.rs-picker-popup-date {
+  z-index: 15000000 !important;
+}
+
+@theme {
+  /** Gray ***************************************************************************/
+  --color-gray-100: #f4f4f2;
+  --color-gray-200: #e8e8e8;
+  --color-gray-300: #bbbfca;
+
+  /** Primary ***************************************************************************/
+  --color-primary-100: #dde6ed;
+  --color-primary-200: #9db2bf;
+  --color-primary-300: #526d82;
+  --color-primary-400: #27374d;
+  --color-primary-500: #074799;
+  --color-primary-600: #001a6e;
+
+  /** Button ***************************************************************************/
+  --color-btn-light: #7c93c3;
+  --color-btn-main: #55679c;
+  --color-btn-dark: #7c93c3;
+
+  /** Success ***************************************************************************/
+  --color-success: #a0d683;
+  --color-success-light: #d3ee98;
+  --color-success-dark: #72bf78;
+
+  /** Danger ***************************************************************************/
+  --color-danger: #ed2b2a;
+  --color-danger-light: #f15a59;
+  --color-danger-dark: #d21312;
+
+  /** Warning ***************************************************************************/
+  --color-warning-100: #ffd60a;
+  --color-warning-200: #ffc300;
+}
+
+.roboto {
+  font-family: 'Roboto', serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+}
