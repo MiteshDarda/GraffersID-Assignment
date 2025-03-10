@@ -93,6 +93,14 @@ export class ReviewService {
         getReviewsValues,
       );
 
+      // company
+      const getOneCompanyQuery = 'SELECT * FROM company WHERE id = $1';
+      const getOneCompanyValues = [companyId];
+      const companyResult = await this.pool.query(
+        getOneCompanyQuery,
+        getOneCompanyValues,
+      );
+
       // review count
       const totalReviewQuery =
         'SELECT COUNT(*) FROM review WHERE "companyId" = $1';
@@ -103,11 +111,12 @@ export class ReviewService {
       );
 
       // Get avgRating from company table
-      const getCompanyQuery = 'SELECT "avgRating" FROM company WHERE id = $1';
-      const getCompanyValues = [companyId];
-      const companyResult = await this.pool.query(
-        getCompanyQuery,
-        getCompanyValues,
+      const getAvgCompanyQuery =
+        'SELECT "avgRating" FROM company WHERE id = $1';
+      const getAvgCompanyValues = [companyId];
+      const avgCompanyResult = await this.pool.query(
+        getAvgCompanyQuery,
+        getAvgCompanyValues,
       );
 
       if (companyResult.rowCount === 0) {
@@ -116,8 +125,9 @@ export class ReviewService {
 
       return {
         reviews: reviewsResult.rows,
-        averageRating: companyResult.rows[0].avgRating,
+        averageRating: avgCompanyResult.rows[0].avgRating,
         totalReview: totalReviewResult.rows[0].count,
+        company: companyResult.rows[0],
       };
     } catch (error) {
       throw new HttpException(

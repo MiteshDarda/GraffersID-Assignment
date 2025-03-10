@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 const Layout = lazy(() => import('./components/layout'));
 const Home = lazy(() => import('./pages/home'));
+const DetailedReview = lazy(() => import('./pages/detailed-review'));
 
 function App() {
   return (
@@ -10,10 +11,7 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/" element={<GeneralTodos />} />
-            <Route path="/todo/:id" element={<Todo />} />
-            <Route path="/calender" element={<Calender />} />
-            <Route path="/calender/:id" element={<Todo />} /> */}
+            <Route path="/:companyId/detailedReview" element={<DetailedReview />} />
           </Route>
         </Routes>
       </Suspense>

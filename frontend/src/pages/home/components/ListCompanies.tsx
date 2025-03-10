@@ -3,18 +3,24 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline'; // empty
 import StarHalfIcon from '@mui/icons-material/StarHalf'; // half
 import StarIcon from '@mui/icons-material/Star'; // star
 import Button from '../../../components/ui/buttons/button';
+import { useNavigate } from 'react-router';
 
 interface ListCompaniesProps {
   companies: any[];
 }
 
-const ListCompanies: FC<ListCompaniesProps> = ({ companies }) => {
-  const renderStars = (stars: number, reviewCount: number) => {
-    if (stars === 0) return 'No rating yet';
-    // stars out of 5
-    return (
-      <div className="flex items-center gap-1">
-        <span>{stars.toFixed(1)}</span>
+const renderStars = (stars: number, reviewCount: number) => {
+  if (stars === 0) return <span className="text-gray-500 text-xs">(No rating yet)</span>;
+  // stars out of 5
+  return (
+    <div className="flex items-center gap-1 justify-center">
+      <span
+        className={`text-yellow-500 ${
+          stars > 3.5 ? 'font-bold' : stars > 2.5 ? 'font-medium' : 'font-normal'
+        }`}>
+        {stars.toFixed(1)}
+      </span>
+      <div>
         {[1, 2, 3, 4, 5].map((star) => {
           if (star <= stars) {
             return <StarIcon key={star} className="text-yellow-500" />;
@@ -24,16 +30,21 @@ const ListCompanies: FC<ListCompaniesProps> = ({ companies }) => {
             return <StarOutlineIcon key={star} className="text-yellow-500" />;
           }
         })}
-        <span className="text-gray-500 text-xs">({reviewCount})</span>
       </div>
-    );
-  };
+      <span className="text-gray-500 text-xs">({reviewCount})</span>
+    </div>
+  );
+};
+
+const ListCompanies: FC<ListCompaniesProps> = ({ companies }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div>
         {companies?.map((company: any) => (
           <div
-            key={company._id}
+            key={company.id}
             className="flex gap-4 mt-4 bg-white p-4 rounded-md shadow-md items-center">
             {/*//* Left Image / Company Logo ============================================================ */}
             <div>
@@ -60,7 +71,10 @@ const ListCompanies: FC<ListCompaniesProps> = ({ companies }) => {
               <div className="flex  justify-between items-end">
                 <div>{renderStars(company.avgRating, company.reviewCount)}</div>
                 <div>
-                  <Button size="sm" variant="ghost">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => navigate(`/${company.id}/detailedReview`)}>
                     Detailed Review
                   </Button>
                 </div>
@@ -74,3 +88,4 @@ const ListCompanies: FC<ListCompaniesProps> = ({ companies }) => {
 };
 
 export default ListCompanies;
+export { renderStars };
