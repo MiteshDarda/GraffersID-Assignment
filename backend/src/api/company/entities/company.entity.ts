@@ -1,5 +1,6 @@
+import { Review } from 'src/api/review/entities/review.entity';
 import { BaseEntity } from 'src/database/base.entity';
-import { Column, Entity, Index } from 'typeorm';
+import { Column, Entity, Index, OneToMany } from 'typeorm';
 
 @Entity('company')
 export class Company extends BaseEntity {
@@ -15,4 +16,15 @@ export class Company extends BaseEntity {
 
   @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
   foundedOn: Date;
+
+  //  Rating out of 5
+  @Column({ type: 'float', default: 0 })
+  avgRating: number;
+
+  // review count
+  @Column({ type: 'int', default: 0 })
+  reviewCount: number;
+
+  @OneToMany(() => Review, (review) => review.company)
+  reviews: Review[];
 }

@@ -1,20 +1,31 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
 
-@Controller('review')
+@Controller('company/:companyId/review')
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
   @Post()
-  create(@Body() createReviewDto: CreateReviewDto) {
-    return this.reviewService.create(createReviewDto);
+  create(
+    @Body() createReviewDto: CreateReviewDto,
+    @Param('companyId') companyId: string,
+  ) {
+    return this.reviewService.create(+companyId, createReviewDto);
   }
 
   @Get()
-  findAll() {
-    return this.reviewService.findAll();
+  findAll(@Param('companyId') companyId: string) {
+    return this.reviewService.findAll(+companyId);
   }
 
   @Get(':id')

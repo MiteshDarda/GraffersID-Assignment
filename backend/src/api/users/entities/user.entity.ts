@@ -1,4 +1,4 @@
-import { ToDo } from 'src/api/to-do/entities/to-do.entity';
+import { Review } from 'src/api/review/entities/review.entity';
 import { BaseEntity } from 'src/database/base.entity';
 import { Role } from 'src/roles/roles.enum';
 import { Column, Entity, OneToMany } from 'typeorm';
@@ -20,6 +20,6 @@ export class User extends BaseEntity {
   @Column({ type: 'enum', enum: Role, default: Role.User })
   role: Role;
 
-  @OneToMany(() => ToDo, (todo) => todo.user, { cascade: true })
-  todos: ToDo[];
+  @OneToMany(() => Review, (review) => review.user)
+  reviews: Review[];
 }

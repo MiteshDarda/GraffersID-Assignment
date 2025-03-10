@@ -27,7 +27,7 @@ const Button = ({
     secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus-visible:ring-gray-600',
     danger: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600',
     success: 'bg-green-600 text-white hover:bg-green-700 focus-visible:ring-green-600',
-    ghost: 'hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-gray-400',
+    ghost: 'bg-black text-white hover:bg-gray-300 hover:text-gray-900 focus-visible:ring-gray-400',
     outline: 'border-2 border-gray-200 hover:bg-gray-100 focus-visible:ring-gray-400'
   };
 

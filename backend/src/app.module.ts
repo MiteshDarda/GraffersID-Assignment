@@ -9,7 +9,6 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './api/users/users.module';
 // import { APP_GUARD } from '@nestjs/core';
 // import { AuthGuard } from './auth/auth.guard';
-import { ToDoModule } from './api/to-do/to-do.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './api/users/entities/user.entity';
 import { CompanyModule } from './api/company/company.module';
@@ -30,9 +29,8 @@ import { ReviewModule } from './api/review/review.module';
     // Application-specific modules
     DatabaseModule,
     UsersModule,
-    ToDoModule,
     CompanyModule,
-    ReviewModule, // Add other modules as needed
+    ReviewModule,
   ],
   controllers: [AppController], // Application's controllers
   providers: [
